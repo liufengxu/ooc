@@ -28,21 +28,21 @@ class Ground(object):
         self.map = {}
         self.line = line
         self.col = col
-        for i in xrange(self.line):
-            for j in xrange(self.col):
+        for i in range(self.line):
+            for j in range(self.col):
                 self.map[(i, j)] = position.Position(i, j)
 
     def show_ground(self):
-        for x in xrange(self.line):
-            for y in xrange(self.col):
+        for x in range(self.line):
+            for y in range(self.col):
                 posi = self.map[(x, y)]
                 fill = posi.get_filler()
                 if fill:
-                    print fill.get_name() + str(fill.age) + ':' + \
-                          str(fill.get_hp()),
+                    print(fill.get_name() + str(fill.age) + ':' + \
+                          str(fill.get_hp()),)
                 else:
-                    print '-----',
-            print
+                    print('-----',)
+            print()
 
     def bound(self, fill, x, y):
         if (x, y) not in self.map:
@@ -53,10 +53,10 @@ class Ground(object):
         posi.set_filler(fill)
 
     def pass_years(self, year_num):
-        for year in xrange(1, year_num + 1):
+        for year in range(1, year_num + 1):
             logging.info('year:%s', year)
-            for i in xrange(self.line):
-                for j in xrange(self.col):
+            for i in range(self.line):
+                for j in range(self.col):
                     delta = random.randint(-1, 1)
                     logging.debug('delta: %s', delta)
                     posi = self.map[(i, j)]
@@ -84,8 +84,8 @@ class Ground(object):
 
     def get_random_empty(self):
         empty_list = []
-        for x in xrange(self.line):
-            for y in xrange(self.col):
+        for x in range(self.line):
+            for y in range(self.col):
                 posi = self.map[(x, y)]
                 fill = posi.get_filler()
                 if not fill:
@@ -101,6 +101,7 @@ def main():
                         "%(thread)d %(message)s",
                         datefmt="%Y-%m-%d %H:%M:%S")
     g = Ground(4, 4)
+    print("Start")
     f1 = filler.Plant('秦', 1, 0)
     f2 = filler.Plant('楚', 1, 0)
     f3 = filler.Plant('燕', 1, 0)
