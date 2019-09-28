@@ -38,10 +38,10 @@ class Ground(object):
                 posi = self.map[(x, y)]
                 fill = posi.get_filler()
                 if fill:
-                    print(fill.get_name() + str(fill.age) + ':' + \
-                          str(fill.get_hp()),)
+                    fill_str = fill.get_name() + str(fill.age) + ':' + str(fill.get_hp())
+                    print(fill_str.center(12, '-'), end=' ')
                 else:
-                    print('-----',)
+                    print('-'.center(13, '-'), end=' ')
             print()
 
     def bound(self, fill, x, y):
@@ -54,7 +54,7 @@ class Ground(object):
 
     def pass_years(self, year_num):
         for year in range(1, year_num + 1):
-            logging.info('year:%s', year)
+            print('year:%s', year)
             for i in range(self.line):
                 for j in range(self.col):
                     delta = random.randint(-1, 1)
@@ -96,7 +96,7 @@ class Ground(object):
 
 
 def main():
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s: "
+    logging.basicConfig(level=logging.FATAL, format="%(levelname)s: "
                         "%(asctime)s: %(filename)s: %(lineno)d * "
                         "%(thread)d %(message)s",
                         datefmt="%Y-%m-%d %H:%M:%S")
